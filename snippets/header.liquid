@@ -2,15 +2,15 @@
   <div class="header-inner flex space-between">
 
     {% unless template == "product" %}
-    <button class="menu-button" @click="toggleMenu">
-      <svg class="menu-arrow-icon">{% render 'header-arrow' %}</svg>
-      <span>Menu</span>
-    </button>
+      <button class="menu-button" @click="toggleMenu">
+        <svg class="menu-arrow-icon">{% render 'header-arrow' %}</svg>
+        <span>Menu</span>
+      </button>
     {% else %}
-    <a href="javascript:history.back()" class="menu-button">
-      <svg class="menu-arrow-icon" style="transform: none;">{% render 'header-arrow' %}</svg>
-      <span>Back</span>
-    </a>
+      <a href="javascript:history.back()" class="menu-button">
+        <svg class="menu-arrow-icon" style="transform: none;">{% render 'header-arrow' %}</svg>
+        <span>Back</span>
+      </a>
     {% endunless %}
 
     <a href="/" class="header-title">{{ shop.name }}</a>
@@ -47,7 +47,10 @@
     <button class="mini-cart-close-button" @click="toggleMiniCart">Close</button>
     {% render 'mini-cart' %}
   </div>
-  <div class="outside" v-if="!miniCart || !menuDrawer" @click="closeAllDrawers"></div>
+  <div
+    class="outside"
+    v-if="!miniCart || !menuDrawer"
+    @click="closeAllDrawers"></div>
 </header>
 
 <script>
@@ -55,11 +58,11 @@
   if (document.querySelector('#header')) {
 
     const headerCart = Vue.createApp({
-      delimiters: ['${', '}'],
+      delimiters: [
+        '${', '}'
+      ],
       data() {
-        return {
-          cartData: store.state.cartState
-        }
+        return {cartData: store.state.cartState}
       },
       methods: {
         toggleMiniCart() {
@@ -77,11 +80,9 @@
             "quantity": item.quantity - 1
           }
 
-          axios.post('/cart/change.js', data)
-            .then(response => {
-              store.getCart()
-            })
-            .catch(error => console.log(error))
+          axios.post('/cart/change.js', data).then(response => {
+            store.getCart()
+          }).catch(error => console.log(error))
         },
         increment(item) {
           const data = {
@@ -89,15 +90,17 @@
             "quantity": item.quantity + 1
           }
 
-          axios.post('/cart/change.js', data)
-            .then(response => {
-              store.getCart()
-            })
-            .catch(error => console.log(error))
+          axios.post('/cart/change.js', data).then(response => {
+            store.getCart()
+          }).catch(error => console.log(error))
         },
         money(value) {
-          if (!value) return 0
-          return "$" + (value/100).toFixed(2)
+          if (!value) 
+            return 0
+          
+          return "$" + (
+            value / 100
+          ).toFixed(2)
         }
       },
       computed: {
@@ -116,5 +119,4 @@
       }
     }).mount('#header')
   }
-
 </script>

@@ -8,27 +8,26 @@
 </div>
 
 {% schema %}
-{
-  "name": "Rich Text",
-  "settings": [
-    {
-      "type": "text",
-      "id": "title",
-      "label": "Heading",
-      "default": "Section Heading"
-    },
-    {
-      "type": "richtext",
-      "id": "text",
-      "label": "Description",
-      "default": "<p>Write your description here</p>"
-    }
-  ],
-  "presets": [
-    {
-      "name": "Rich Text",
-      "category": "Text"
-    }
-  ]
-} 
+  {
+    "name": "Rich Text",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Section Heading"
+      }, {
+        "type": "richtext",
+        "id": "text",
+        "label": "Description",
+        "default": "<p>Write your description here</p>"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Rich Text",
+        "category": "Text"
+      }
+    ]
+  }
 {% endschema %}
